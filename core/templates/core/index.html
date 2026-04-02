@@ -91,7 +91,7 @@
       <!-- CTA -->
       <div class="hidden lg:flex items-center gap-3">
         <a href="#" class="text-sm font-medium text-navy hover:text-sky transition-colors">Sign In</a>
-        <a href="#" class="bg-sky text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-sky-light transition-colors shadow-sm shadow-sky/30">
+        <a href="{% url 'apply_loan' %}" class="bg-sky text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-sky-light transition-colors shadow-sm shadow-sky/30">
           Apply Now →
         </a>
       </div>
@@ -113,7 +113,7 @@
       <li><a href="#calculator" class="block hover:text-sky">Calculator</a></li>
       <li><a href="#contact" class="block hover:text-sky">Contact</a></li>
       <li class="pt-2 border-t border-slate-100">
-        <a href="#" class="block w-full text-center bg-sky text-white font-semibold px-5 py-2.5 rounded-full">Apply Now →</a>
+        <a href="{% url 'apply_loan' %}" class="block w-full text-center bg-sky text-white font-semibold px-5 py-2.5 rounded-full">Apply Now →</a>
       </li>
     </ul>
   </div>
