@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Received</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 h-screen flex items-center justify-center font-sans">
+
+    <div class="max-w-md w-full bg-white p-10 rounded-3xl shadow-xl text-center border border-slate-100">
+        <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-green-100 mb-6">
+            <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+
+        <h1 class="text-3xl font-extrabold text-slate-900 mb-3">Application Received</h1>
+        <p class="text-slate-500 mb-8 leading-relaxed">
+            Thank you for choosing Shield Microfinance Bank. Your application has been sent to our credit department. Check your email for a confirmation receipt.
+        </p>
+
+        <a href="/" class="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition duration-200">
+            Back to Home
+        </a>
+
+        <div class="mt-6">
+            <p class="text-sm text-slate-400">Application Reference: #SHIELD-{{ "123456789"|random }}</p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Application | Shield MFB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 flex flex-col min-h-screen">
+
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="h-8 w-8 bg-blue-700 rounded-lg flex items-center justify-center mr-3">
+                        <span class="text-white font-bold text-lg">S</span>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900 uppercase">Shield <span class="text-blue-700">MFB</span></span>
+                </div>
+                <a href="{% url 'home' %}" class="text-sm font-semibold text-blue-700 hover:text-blue-800 transition">Return Home</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow py-12 px-4">
+        <div class="max-w-2xl mx-auto">
+
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-extrabold text-slate-900">Track Your Application</h1>
+                <p class="text-slate-500 mt-2">Enter the email address used during your application to see your current status.</p>
+
+                <form method="GET" action="." class="mt-8 flex gap-2">
+                    <input type="email" name="email" required
+                        placeholder="e.g. name@example.com"
+                        class="w-full px-5 py-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-blue-100 focus:border-blue-700 outline-none transition shadow-sm">
+                    <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-xl transition shadow-lg shadow-blue-200">
+                        Search
+                    </button>
+                </form>
+            </div>
+
+            {% if applications %}
+                <div class="space-y-4">
+                    <h2 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Results Found</h2>
+
+                    {% for app in applications %}
+                    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <p class="text-xs font-bold text-blue-700 uppercase mb-1">Loan Ref: #SH-{{ app.id|default:"001" }}</p>
+                            <h3 class="text-lg font-bold text-slate-900">₦{{ app.loan_amount }}</h3>
+                            <p class="text-sm text-slate-500">{{ app.purpose }}</p>
+                        </div>
+
+                        <div class="flex items-center">
+                            {% if app.status == 'Approved' %}
+                                <span class="px-4 py-1.5 rounded-full bg-green-100 text-green-700 text-sm font-bold border border-green-200 flex items-center gap-1">
+                                    <span class="h-2 w-2 bg-green-500 rounded-full"></span> Approved
+                                </span>
+                            {% elif app.status == 'Rejected' %}
+                                <span class="px-4 py-1.5 rounded-full bg-red-100 text-red-700 text-sm font-bold border border-red-200 flex items-center gap-1">
+                                    <span class="h-2 w-2 bg-red-500 rounded-full"></span> Rejected
+                                </span>
+                            {% else %}
+                                <span class="px-4 py-1.5 rounded-full bg-yellow-100 text-yellow-700 text-sm font-bold border border-yellow-200 flex items-center gap-1">
+                                    <span class="h-2 w-2 bg-yellow-500 rounded-full"></span> Pending
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% elif request.GET.email %}
+                <div class="text-center py-10 bg-white rounded-2xl border border-dashed border-slate-300">
+                    <p class="text-slate-500">No applications found for <strong>{{ request.GET.email }}</strong></p>
+                </div>
+            {% endif %}
+
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-600 font-medium">Need help? <a href="mailto:support@shieldmfb.com" class="text-blue-700 hover:underline">Contact our support team</a></p>
+            <p class="text-xs text-slate-400 mt-2">© 2026 Shield Microfinance Bank. Licensed by the Central Bank.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
